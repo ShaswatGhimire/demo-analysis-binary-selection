@@ -1,0 +1,18 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>
+    {% if winner %}
+    {{winner}} to <span style="color: blue;"> Mr./Mrs {{bid.bidder}}</span> at <span style="color: red;"> ${{bid.raise_bid}}</span>
+    </h2>
+    {% else %}
+    <h2>Error</h2>
+    {% endif %}
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    
+
+   
+{% endblock %}

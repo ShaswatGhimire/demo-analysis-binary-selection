@@ -1,0 +1,122 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<div style="
+    column-count: 2;
+    padding: 10px;
+    border: 2px solid #000;
+    border-radius: 20px;
+    border-padding: 10px;
+    background-color : #ffffff;">
+    <!--#F1FEFD-->
+    {% if items %}
+    {% for item in items %}
+    <h1> {% if item.id_value == 1 %}
+        Suicidal Tweet Prediction        
+    </h1>
+    svm predicted 
+    <h3>{{item.prediction_svm}}</h3>
+    <hr>
+        random forest predicted
+    <h3>{{item.prediction_rf}}</h3>
+    <hr>
+        decision tree predicted
+    <h3>{{item.prediction_dt}}</h3>
+    <hr>
+        knn predicted 
+    <h3>{{item.prediction_knn}}</h3>
+    <hr>
+    {% endif %}
+
+    <h1> {% if item.id_value == 2 %}
+        Breast Cancer Prediction        
+    </h1>
+    svm predicted 
+    <h3>{{item.prediction_svm}}</h3>
+    <hr>
+        random forest predicted
+    <h3>{{item.prediction_rf}}</h3>
+    <hr>
+        decision tree predicted
+    <h3>{{item.prediction_dt}}</h3>
+    <hr>
+        knn predicted 
+    <h3>{{item.prediction_knn}}</h3>
+    <hr>
+    {% endif %}
+
+
+
+    <h1> {% if item.id_value == 3 %}
+        Fraudulent Job Prediction       
+    </h1>
+    svm predicted 
+    <h3>{{item.prediction_svm}}</h3>
+    <hr>
+        random forest predicted
+    <h3>{{item.prediction_rf}}</h3>
+    <hr>
+        decision tree predicted
+    <h3>{{item.prediction_dt}}</h3>
+    <hr>
+        knn predicted 
+    <h3>{{item.prediction_knn}}</h3>
+    <hr>
+    {% endif %}
+
+
+
+    <h1> {% if item.id_value == 4 %}
+        Dogs vs Cats Classification       
+    </h1>
+    svm predicted 
+    <h3>{{item.prediction_svm}}</h3>
+    <hr>
+        random forest predicted
+    <h3>{{item.prediction_rf}}</h3>
+    <hr>
+        decision tree predicted
+    <h3>{{item.prediction_dt}}</h3>
+    <hr>
+        knn predicted 
+    <h3>{{item.prediction_knn}}</h3>
+    <hr>
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    
+<!--<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Suicidal Tweet Prediction</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if items %}
+                {% for item in items %}
+                    <tr>
+                        <td>svm predicted</td>
+                        <td>{{ item.prediction_svm }}</td>
+                    </tr>
+                    <tr>
+                        <td>random forest predicted</td>
+                        <td>{{ item.prediction_rf }}</td>
+                    </tr>
+                    <tr>
+                        <td>decision tree predicted</td>
+                        <td>{{ item.prediction_dt }}</td>
+                    </tr>
+                    <tr>
+                        <td>knn predicted</td>
+                        <td>{{ item.prediction_knn }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>-->
+
+
+{% endblock %}

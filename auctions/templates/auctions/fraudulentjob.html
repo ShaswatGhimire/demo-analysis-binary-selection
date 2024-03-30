@@ -1,0 +1,131 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<form action = "{% url 'fraudulentjob' %}" method="POST" > 
+    {% csrf_token %}
+    <div style=" font-size:30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content : center;
+    color : #fff; font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow:
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000
+    ">
+        Enter your data
+    </div>
+    <div class="form-group"  >
+    </div>
+    <br>
+    <div form style="display: flex;
+    flex-direction: column;
+    justify-content : center;
+    padding-left: 2em;
+    padding-right: 2em;
+     max-width: 500px;
+     margin: auto;
+     padding-bottom: 1rem;
+  ">
+    <div form style =" background-color: #000;
+    display: block;
+    padding: 1rem;
+    max-width: 500px;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.05); ">
+
+        <!--<label for="description">Tweet:</label><br>
+        <textarea name="tweet" id=tweet rows="10" cols="65"></textarea>-->
+        <form class= "form" style:"display:flex;">
+            <input type="checkbox" name="has_location" id="has_location" class="form-check-input" style="margin: 5px;  gap: 20px; ">
+            <label for="has_location" style="color:white;">Location</label>
+            <br>
+            
+            <input type="checkbox" name="has_salary_range" id="has_salary_range" class="form-check-input" style="margin: 5px;  gap: 20px;">
+            <label for="has_salary_range" style="color:white;">Salary Range</label> <br>
+            
+            <input type="checkbox" name="has_description" id="has_description" class="form-check-input" style="margin: 5px;  gap: 20px;">
+            <label for="has_description" style="color:white;">Description</label> <br>
+            
+            <input type="checkbox" name="has_requirements" id="has_requirements" class="form-check-input" style="margin: 5px;  gap: 20px;">
+            <label for="has_requirements" style="color:white;">Requirements</label> <br>
+            
+            <input type="checkbox" name="has_benefits" id="has_benefits" class="form-check-input" style="margin: 5px;  gap: 20px;">
+            <label for="has_benefits" style="color:white;">Benefits</label> <br>
+            
+            <input type="checkbox" name="has_company_profile" id="has_company_profile" class="form-check-input" style="margin: 5px;  gap: 20px;">
+            <label for="has_company_profile" style="color:white;">Company Profile</label> <br>
+            
+            <input type="checkbox" name="has_functions" id="has_functions" class="form-check-input" style="margin: 5px;  gap: 20px;">
+            <label for="has_functions" style="color:white;">Has Function</label> <br>
+            
+        <input placeholder="Title" name="title" type="text" class="form-control"style="margin: 5px;" >
+        <input placeholder="Function" name="function" type="text" class="form-control" style="margin: 5px;">
+        <input placeholder="Has Company Logo" name="hascompanylogo" type="checkbox"  class="form-check-input" style="margin: 5px;  gap: 20px;"> 
+        <label for="hascompanylogo" style="color:white;">Has Company Logo</label><br>
+        <input placeholder="Job Description" name="cleanedtext" type="text" class="form-control" style="margin: 5px;" >
+    </form>
+</div>
+<br>
+<div class= "button" style="display: flex;
+flex-wrap: wrap;
+justify-content : center;
+">
+<input type="submit" value="Predict" class="btn btn-secondary" style="display: block;
+background-color: #0d3d32;
+color: #ffffff;
+font-size: 0.875rem;
+line-height: 1.25rem;
+font-weight: 500;
+width: 350px;
+border-radius: 0.5rem;
+text-transform: uppercase;">
+</div>
+</div> 
+</form>
+<div style="color: white; padding-top:20px; column-count:2; padding: 10px; padding-left : 20px; margin-left : 150px; margin-right:150px; ">
+{% if item %}
+svm predicted 
+<h3>{% if item.predicted_svm == true %} 
+    <h3> Fraudulent Job Detected </h3>
+    {% else %} 
+    <h3> Fraudulent Job Not Detected </h3> 
+    {% endif %}
+    <div class="progress-bar" role="progressbar" data-label="Accuracy : 99%" style="width:99%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ></div>
+</h3>
+    
+random forest predicted
+<h3>
+    {% if item.predicted_rf == true %} 
+<h3> Fraudulent Job Detected </h3>
+{% else %} 
+<h3> Fraudulent Job Not Detected </h3> 
+{% endif %}
+<div class="progress-bar" role="progressbar" data-label="Accuracy : 99%" style="width:99%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ></div>
+</h3>
+
+decision tree predicted
+<h3>
+    {% if item.predicted_dt == true %} 
+<h3> Fraudulent Job Detected </h3>
+{% else %} 
+<h3> Fraudulent Job Not Detected </h3> 
+{% endif %}
+<div class="progress-bar" role="progressbar" data-label="Accuracy : 99%" style="width:99%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ></div>
+</h3>
+
+knn predicted 
+<h3>
+    {% if item.predicted_knn == true %} 
+<h3> Fraudulent Job Detected </h3>
+{% else %} 
+<h3> Fraudulent Job Not Detected </h3> 
+{% endif %}
+<div class="progress-bar" role="progressbar" data-label="Accuracy : 99%" style="width:99%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ></div>
+</h3>
+
+{% endif %}
+</div>
+{% endblock %}

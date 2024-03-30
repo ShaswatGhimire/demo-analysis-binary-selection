@@ -1,0 +1,93 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+<form action = "{% url 'suicidalprediction' %}" method="POST" > 
+    {% csrf_token %}
+    <div class="form-group" >
+    </div>
+    <br>
+    <div form style="display: flex;
+    flex-direction: column;
+    padding-left: 2em;
+    padding-right: 2em;
+     max-width: 500px;
+     margin: auto;
+     padding-bottom: 1rem;">
+       
+       <div form style =" background-color: #121111;
+       display: block;
+       padding: 1rem;
+       max-width: 600px;
+       border-radius: 0.5rem;
+       border-color : #fff;
+       box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -2px rgba(255, 255, 255, 0.1); ">
+           <label for="description" style="font-weight: bold; color : #fff; font-size: 25px; display : flex; padding-buttom: 10px;">Post</label><br>
+       <textarea name="tweet" placeholder="What is happening?!" style="border-color:#fff; background-color : #121111 ; color : white; padding-left : 20px; padding-top: 10px; border-radius: 10px; " id=tweet rows="10" cols="50"></textarea></div>
+    <br>
+    <div class= "button" style="display: flex;
+    flex-wrap: wrap;
+    justify-content : center; padding-top : 10px;
+    ">
+    <input type="submit" value="Predict" class="btn btn-secondary" style="display: block; background-color: #0d3d32;
+    
+    color: #ffffff;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    width: 300px;
+    border-radius: 0.5rem;
+    text-transform: uppercase;">
+</div>
+</div> 
+
+</form>
+
+<div style="color: white; padding-top:20px; column-count:2; padding: 10px; padding-left : 20px; margin-left : 150px; margin-right:150px; ">
+     
+{% if item %}
+    SVM Predicted 
+    <h3>
+        {% if item.prediction_svm == True %} 
+            Potential Suicidal 
+        {% else %} 
+            Not Suicidal 
+        {% endif %}
+        <div class="progress-bar" role="progressbar" data-label="Accuracy : 78%" style="width:78%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ></div>
+    </h3>
+    
+    Random Forest Predicted
+    <h3>
+        {% if item.prediction_rf == True %} 
+            Potential Suicidal
+        {% else %} 
+            Not Suicidal
+        {% endif %}
+        <div class="progress-bar" role="progressbar" data-label="Accuracy : 99%" style="width:99%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ></div>
+    </h3>
+    
+    Decision Tree Predicted
+    <h3>
+        {% if item.prediction_dt == True %} 
+            Potential Suicidal
+        {% else %} 
+            Not Suicidal
+        {% endif %}
+        <div class="progress-bar" role="progressbar" data-label="Accuracy : 57%" style="width:57%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ></div>
+    </h3>
+    
+    KNN Predicted 
+    <h3>
+        {% if item.prediction_knn == True %} 
+            Potential Suicidal
+        {% else %} 
+            Not Suicidal
+        {% endif %}
+        <div class="progress-bar" role="progressbar" data-label="Accuracy : 98%" style="width:98%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ></div>
+    </h3>
+    
+{% endif %}
+</div>
+
+
+{% endblock %}
